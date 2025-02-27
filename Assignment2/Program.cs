@@ -1,10 +1,10 @@
-﻿namespace SoftwareBasics
+﻿namespace Assignment2
 {
     class Program
     {
         public static void Main()
         {
-            Console.WriteLine("Hello World");
+            
         }
     }
 }
