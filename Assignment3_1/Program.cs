@@ -75,7 +75,7 @@ public class Triangle(double sideA, double sideB, double sideC) : Shape
 
     public override string ToString()
     {
-        return $"Triangle : SideA = {SideA}, SideB = {sideB}, SideC = {sideC}";
+        return $"Triangle : SideA = {SideA}, SideB = {SideB}, SideC = {SideC}";
     }
 
     public override double Area()

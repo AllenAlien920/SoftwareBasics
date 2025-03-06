@@ -18,6 +18,7 @@ class Program
         int sum = 0;
         for (int i = 0; i < len; i++)
         {
+            data[i] = int.Parse(input[i]);
             max = Math.Max(max, data[i]);
             min = Math.Min(min, data[i]);
             sum += data[i];

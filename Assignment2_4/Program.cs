@@ -12,10 +12,9 @@ class Program
 
         var input = rawInput.Split();
         int height = int.Parse(input[0]), width = int.Parse(input[1]);
-        int[][] matrix = new int[height][];
+        int[,] matrix = new int[height, width];
         for (int i = 0; i < height; i++)
         {
-            matrix[i] = new int[width];
             var line = Console.ReadLine();
             if (line == null)
             {
@@ -31,27 +30,17 @@ class Program
 
             for (int j = 0; j < width; j++)
             {
-                matrix[i][j] = int.Parse(data[j]);
+                matrix[i, j] = int.Parse(data[j]);
             }
         }
 
-        var result = IsToeplitz(matrix);
+        var result = IsToeplitz(matrix, height, width);
         Console.WriteLine(
             result ? "The input matrix is a Toeplitz matrix" : "The input matrix is not a Toeplitz matrix");
     }
 
-    public static bool IsToeplitz(int[][] matrix)
+    public static bool IsToeplitz(int[,] matrix, int height, int width)
     {
-        int height = matrix.Length;
-        int width = matrix[0].Length;
-        for (int i = 1; i < height; i++)
-        {
-            if (matrix[i].Length != width)
-            {
-                throw new ArgumentException("The input array is not a matrix");
-            }
-        }
-
         bool[] visited = new bool[height + width - 1];
         int[] value = new int[height + width - 1];
         int CalcPos(int x, int y) => y - x + height - 1;
@@ -63,11 +52,11 @@ class Program
                 if (!visited[pos])
                 {
                     visited[pos] = true;
-                    value[pos] = matrix[i][j];
+                    value[pos] = matrix[i, j];
                 }
                 else
                 {
-                    if (matrix[i][j] != value[pos])
+                    if (matrix[i, j] != value[pos])
                     {
                         return false;
                     }
