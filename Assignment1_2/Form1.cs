@@ -18,7 +18,6 @@ public partial class Form1 : Form
                 throw new ArgumentException();
             }
 
-            var operate = comboBox1.SelectedItem.ToString();
             double ans;
             switch (comboBox1.SelectedItem)
             {
