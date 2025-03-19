@@ -33,11 +33,11 @@ public class Order
     }
 }
 
-public class OrderDetails
+public class OrderDetails(string productName, string customer, int amount)
 {
-    public string ProductName { get; }
-    public string Customer { get; }
-    public int Amount { get; }
+    public string ProductName { get; } = productName;
+    public string Customer { get; } = customer;
+    public int Amount { get; } = amount;
 
     public override bool Equals(object? obj)
     {
@@ -57,12 +57,5 @@ public class OrderDetails
     public override string ToString()
     {
         return $"Product Name: {ProductName}, Customer: {Customer}, Amount: {Amount}";
-    }
-
-    internal OrderDetails(string productName, string customer, int amount)
-    {
-        ProductName = productName;
-        Customer = customer;
-        Amount = amount;
     }
 }

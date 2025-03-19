@@ -8,6 +8,22 @@ public class OrderService : IEnumerable<Order>
     public const int OperationSuccessful = 0;
     public const int OperationFailed = 1;
 
+    public List<Order> GetOrders()
+    {
+        return _orders;
+    }
+
+    public int AddOrder(OrderDetails detail)
+    {
+        if (_orders.Any(order => order.Details.Equals(detail)))
+        {
+            return OperationFailed;
+        }
+
+        _orders.Add(new Order(detail));
+        return OperationSuccessful;
+    }
+
     public int AddOrder(string product, string customer, int amount)
     {
         var orderDetail = new OrderDetails(product, customer, amount);
@@ -60,6 +76,16 @@ public class OrderService : IEnumerable<Order>
         var orders = _orders.Where(func).ToList();
         orders.Sort((x, y) => x.Details.Amount - y.Details.Amount);
         return orders;
+    }
+
+    public List<Order> SearchOrdersByProduct(string product)
+    {
+        return _orders.Where(order => order.Details.ProductName == product).ToList();
+    }
+
+    public List<Order> SearchOrdersByCustomer(string customer)
+    {
+        return _orders.Where(order => order.Details.Customer == customer).ToList();
     }
 
     public void SortOrders()
